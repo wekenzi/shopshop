@@ -51,7 +51,7 @@ const Cart = () => {
                     </tbody>
                 </table>
                 <div className="card">
-                    <h2 className="my-1 text-center text-dark text-monospace">Total Cost: ${countTotal(cart)}</h2>
+                    <h2 className="my-1 text-center text-dark text-monospace">Total Cost: ${countTotal(cart).toFixed(2)}</h2>
                 </div>
                 </>
             }
