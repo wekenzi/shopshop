@@ -1,23 +1,40 @@
-import logo from './logo.svg';
 import './App.css';
+import React , {useState} from 'react';
+import  Header  from "./components/header/Header";
+import  Head  from "./components/header/Head";
+import  Home  from "./components/Home/Home";
+import  Cart  from "./components/Cart/Cart";
+import  ProductPage  from "./components/ProductPage/ProductPage";
+import { Switch, Route } from "react-router-dom";
 
 function App() {
+  const [lang, changeLang] = useState('en');
+  const [dir, changeDir] = useState('ltr');
+
+  const clickBtn = () => {
+    lang === 'en' ? changeLang('ar') : changeLang('en');
+    lang === 'en' ? changeDir('rtl') : changeDir('ltr');
+  }
+
+  const helmetProps = { dir, lang };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Head {...helmetProps}/>
+      <Header changeLang={clickBtn} lang={ lang === 'en' ? 'ع':'en'}/>
+
+      <Switch>
+        <Route path="/" exact>
+          <Home />
+        </Route>
+        <Route path="/product/:id" exact>
+          <ProductPage />
+        </Route>
+        <Route path="/cart" exact>
+          <Cart />
+        </Route>
+      </Switch>
+      
     </div>
   );
 }
