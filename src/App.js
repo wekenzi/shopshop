@@ -6,6 +6,8 @@ import  Home  from "./components/Home/Home";
 import  Cart  from "./components/Cart/Cart";
 import  ProductPage  from "./components/ProductPage/ProductPage";
 import { Switch, Route } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const [lang, changeLang] = useState('en');
@@ -34,7 +36,7 @@ function App() {
           <Cart />
         </Route>
       </Switch>
-      
+      <ToastContainer autoClose={2000} />
     </div>
   );
 }

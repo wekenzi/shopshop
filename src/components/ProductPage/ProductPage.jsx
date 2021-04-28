@@ -10,6 +10,8 @@ const ProductPage = () => {
     const [product, updateProduct] = useState();
     const isLoading = useSelector(state=>state.isLoading)
     const dispatch = useDispatch()
+    const cart = useSelector(state=>state.cart)
+    
     const getProductData = async () => {
         dispatch(showLoading())
         try{
@@ -19,6 +21,11 @@ const ProductPage = () => {
         }catch(err){
 
         }
+    }
+
+    const getItemFromStore = (id) =>{
+        let item = cart.find(x=>x.id === id);
+        return item ? true : false;
     }
 
     useEffect(() => {
@@ -40,8 +47,8 @@ const ProductPage = () => {
                 <div className="col-md-8">
                     <h1 className="mb-4">{product.title}</h1>
                     <p>{product.description}</p>
-                    <button type="button" className="btn btn-primary" onClick={()=>dispatch(addToCart(product))}>
-                        Add to Cart
+                    <button type="button" className="btn btn-primary" onClick={()=>dispatch(addToCart(product))} disabled={getItemFromStore(product.id)}>
+                        {getItemFromStore(product.id) ? 'In Cart' : 'Add to Cart'}
                     </button>
                 </div>
             </div>
