@@ -1,8 +1,9 @@
 import React from 'react'
-import { Helmet } from "react-helmet";
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 
 const Head = ({dir, lang}) => {
     return (
+        <HelmetProvider>
         <div className="application">
             <Helmet htmlAttributes={{ dir }}>
                 <meta charSet="utf-8" />
@@ -14,6 +15,7 @@ const Head = ({dir, lang}) => {
                 }
             </Helmet>
       </div>
+      </HelmetProvider>
     )
 }
 

@@ -31,6 +31,7 @@ const ProductPage = () => {
     useEffect(() => {
         getProductData();
         return () => {}
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     if(!product || isLoading) return (<div className="text-center mt-5">

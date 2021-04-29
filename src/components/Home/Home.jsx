@@ -36,6 +36,7 @@ const Home = () => {
     useEffect(() => {
         getProducts(15);
         return () => {}
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     if(isLoading) return (<div className="text-center mt-5">
