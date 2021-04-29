@@ -4,6 +4,19 @@ import { GLOBALS } from '../../api/api';
 import Item  from "../Item/Item";
 import { useSelector, useDispatch } from "react-redux";
 import { showLoading, loaded } from "../../services/actions";
+import { motion } from "framer-motion";
+
+const container = {
+    hidden: { opacity: 1, scale: 0 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        delayChildren: 0.3,
+        staggerChildren: 0.2
+      }
+    }
+};
 
 const Home = () => {
     const [products, updateProducts] = useState([]);
@@ -30,9 +43,13 @@ const Home = () => {
 
     return (
         <div className="container mt-4">
-            <div className="row">
-                {products.map((product)=>(<Item {...product} key={product.id}/>))}
-            </div>
+            <motion.div variants={container} initial="hidden" animate="visible">
+                <div className="row">
+                        {products.map((product)=>(
+                            <Item {...product} key={product.id}/>
+                        ))}
+                </div>
+            </motion.div>
         </div>
     )
 }
