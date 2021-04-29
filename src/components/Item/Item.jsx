@@ -6,14 +6,14 @@ const item = {
     hidden: { y: 20, opacity: 0 },
     visible: {
       y: 0,
-      opacity: 1
-    }
+      opacity: 1,
+    },
 };
 
 const Item = ({category, description, id, image, price, title}) => {
     return (
         <div className="col-md-4">
-            <motion.div variants={item}>
+            <motion.div variants={item} whileHover={{ scale: 1.02 }}>
                 <div className="card m-2" style={{height:'460px'}}>
                     <div 
                     style={{
